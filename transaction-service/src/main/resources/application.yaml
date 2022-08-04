@@ -1,0 +1,26 @@
+spring:
+  profiles:
+    active: local
+  jpa:
+    show-sql: false
+    open-in-view: true
+    hibernate:
+      ddl-auto: create
+  datasource:
+    url: "jdbc:mysql://localhost:3306/transactions"
+    username: "root"
+    password: "Heybitch123."
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  springdoc:
+    swagger-ui:
+      disable-swagger-default-url: true
+server:
+  port: ${PORT:8024}
+redis:
+  nodes:
+    - "10.2.134.96:7001"
+    - "10.2.134.96:7002"
+    - "10.2.134.96:7003"
+    - "10.2.134.96:7004"
+    - "10.2.134.96:7005"
+    - "10.2.134.96:7006"
