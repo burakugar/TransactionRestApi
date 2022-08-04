@@ -3,6 +3,7 @@ Transaction REST API with CRUD operations in Spring Boot.
 Don't forget to work on "jdbc:mysql://localhost:3306/transactions". You can change this configuration on application.yaml for your local MySQL server.
 
 This service has 7 endpoints.
+
 <img width="1439" alt="image" src="https://user-images.githubusercontent.com/50373019/182846723-933217b6-02e9-41e8-a20e-803f6be1c878.png">
 To add a transaction to DB, use the POST method and fill the below body:
 <img width="1440" alt="image" src="https://user-images.githubusercontent.com/50373019/182846913-db26ca8b-6d85-49ad-a303-df0955e99a29.png">
