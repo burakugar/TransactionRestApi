@@ -6,13 +6,17 @@ import com.constant.ErrorCodes;
 import com.controller.TransactionController;
 import com.exception.TransactionNotFoundException;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
+import javax.validation.ConstraintViolationException;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -38,6 +42,12 @@ public class TransactionAdvice extends BaseAdvice {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                 .body(constructError(ErrorCodes.VALIDATION_CONSTRAINT_ERROR,
                         generateFieldErrorMessage(e.getBindingResult().getFieldErrors())));
+    }
+
+    @ExceptionHandler(ConstraintViolationException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    ResponseEntity<String> handleConstraintViolationException(ConstraintViolationException e) {
+        return new ResponseEntity<>("Not valid due to validation error: " + e.getMessage(), HttpStatus.BAD_REQUEST);
     }
 
     private static String generateFieldErrorMessage(List<FieldError> fieldErrors) {

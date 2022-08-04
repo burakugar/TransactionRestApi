@@ -33,7 +33,7 @@ import java.util.List;
 @EntityListeners(AuditingEntityListener.class)
 public class TransactionEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "transaction_id_generator")
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "transaction_id_generator")
     @SequenceGenerator(name = "transaction_id_generator", sequenceName = "transaction_sequence_id", allocationSize = 1)
     @Column(name = "id")
     private Integer id;
